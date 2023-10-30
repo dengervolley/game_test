@@ -22,6 +22,12 @@ export class Zombie extends Container {
     }
 
     async walk() {
+        const sound = new Howl({
+            src: [`./sounds/male_zombie_roar.wav`],
+            loop: false,
+            volume: 0.5
+        });
+        sound.play();
         return new Promise((resolve, reject) => {
             const tween = new TWEEN.Tween(this.view)
                 .to({ x: -80, rotation: -0.6 }, 200)

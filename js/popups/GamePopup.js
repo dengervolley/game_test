@@ -26,7 +26,7 @@ export class GamePopup extends Container {
             fill: 0xff0000,
             align: 'center',
             fontWeight: "bolder",
-            stroke: "#0e0af5",
+            stroke: 0xff0000,
             strokeThickness: 4
         }));
         this.text.visible = false;
@@ -40,16 +40,24 @@ export class GamePopup extends Container {
         if(name === 'popupWin') this.text.visible = true;
         this.item.texture = Texture.from(name);
         this.item.visible = true;
+        this.back.alpha = 0;
         new TWEEN.Tween(this.back)
             .to({alpha: 0.75}, 300)
             .start();
         new TWEEN.Tween(this.item)
             .to({alpha: 1}, 300)
             .start();
+
+        const sound = new Howl({
+            src: [`./sounds/${name}.wav`],
+            loop: false ,
+            volume: 0.5
+        });
+        sound.play();
     }
 
     async hide() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             this.back.alpha = 0.75;
             const tween2 = new TWEEN.Tween(this.back)
                 .to({alpha: 0}, 300)

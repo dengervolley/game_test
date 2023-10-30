@@ -15,8 +15,12 @@ export class Man extends Container {
         ];
         this.zombieTextures = [
             Texture.from('manZombie1'),
+            Texture.from('manZombie1'),
+            Texture.from('manZombie2'),
             Texture.from('manZombie2'),
             Texture.from('manZombie3'),
+            Texture.from('manZombie3'),
+            Texture.from('manZombie4'),
             Texture.from('manZombie4')
         ];
         this.stopTextures = [Texture.from('manStop')];

@@ -1,4 +1,4 @@
-import {Container, Sprite, Text, Texture} from "./libs/pixi.mjs";
+import {Container, Sprite, Texture} from "./libs/pixi.mjs";
 import ui from "./page/LogicUI.mjs";
 
 export class StartScreen extends Container {
@@ -20,17 +20,14 @@ export class StartScreen extends Container {
     }
 
     tapEnywhere() {
-        const tapText = this.addChild(new Text('TAP ENYWHERE TO START', {
-                fontFamily: 'Arial',
-                fontSize: 32,
-                fill: 0xff1010,
-                align: 'center',
-                fontWeight: "bold",
-                stroke: "#0e0af5",
-                strokeThickness: 4
-            }));
-
+        const tapText = this.addChild(Sprite.from('tapText'));
+        window.tapText = tapText;
         tapText.anchor.set(0.5);
-        tapText.y = 290;
+        tapText.scale.set(0.4);
+        tapText.y = 210;
+    }
+
+    tick() {
+
     }
 }

@@ -32,5 +32,6 @@ export const AssetsMap = {
         {name: 'popupLose', url: './assets/popups/popup_lose.png'},
         {name: 'popupNoMoney', url: './assets/popups/popup_no_money.png'},
         {name: 'popupWin', url: './assets/popups/popup_win.png'},
+        {name: 'tapText', url: './assets/popups/start_msg.png'},
     ]
 }

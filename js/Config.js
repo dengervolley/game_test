@@ -6,7 +6,7 @@ export const config = {
     maxContNumber: 10,
     backWidth: 1280,
     backHeight: 640,
-    waitTime: 1000,
+    waitTime: 5000,
     trees: [
         {
             x: -475,

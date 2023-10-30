@@ -14,11 +14,13 @@ export class Stage extends Container {
 
     _init() {
         this.scene = new Scene();
+        this.startScreen = new StartScreen()
         this.stage.addChild(this.scene);
-        this.stage.addChild(new StartScreen());
+        this.stage.addChild(this.startScreen);
     }
 
     tick() {
         this.scene.tick();
+        this.startScreen.tick();
     }
 }

@@ -27,13 +27,27 @@ export class Scene extends Container {
 
         this.logo = this.addChild(Sprite.from('logo'));
         this.logo.anchor.set(0.5);
-        this.logo.scale.set(0.2);
-        this.logo.y = -270;
+        this.logo.scale.set(0.1);
+        this.logo.y = -280;
         this.logo.x = -480;
 
         window["logo"] = this.logo;
         this.addListeners();
         this.addPopup();
+
+        this.mainSound = new Howl({
+            src: ['./sounds/main.mp3'],
+            loop: true,
+            volume: 0.5
+        });
+
+        var isFirstTap = true;
+        app.view.addEventListener('pointerdown', () => {
+            if (isFirstTap) {
+                this.mainSound.play();
+                isFirstTap = false;
+            }
+        });
     }
 
     addListeners() {
@@ -134,6 +148,15 @@ export class Scene extends Container {
         } else {
             ui.setRoundWin(0);
             await this.zombie.walk();
+            await this.wait(100);
+            const sound = new Howl({
+                src: [`./sounds/man_scream.wav`],
+                loop: false,
+                volume: 0.8
+            });
+            sound.play();
+            this.man.stop();
+            await this.wait(200);
             this.man.standZombie();
         }
         ui.startStopButton.textContent = 'Start Round';
@@ -178,6 +201,12 @@ export class Scene extends Container {
         const manGlobalPos = this.toGlobal(this.man.position).x;
 
         if (profitPos - manGlobalPos <= 20) {
+            const sound = new Howl({
+                src: [`./sounds/grab_item.wav`],
+                loop: false,
+                volume: 0.8
+            });
+            sound.play();
             ui.increaseRoundWin();
             let thing = this.profit.shift();
             new TWEEN.Tween(thing)
@@ -195,12 +224,26 @@ export class Scene extends Container {
         this.popup = this.addChild(new GamePopup());
         window["popup"] = this.popup;
     }
+    async wait(time) {
+        return new Promise(res => {
+            const timer = {time: 0}
+            new TWEEN.Tween(timer)
+                .to({time: 1}, time)
+                .onComplete(() => {
+                    res();
+                })
+                .start();
+        })
+    }
 
     async showPopup(popupName) {
+        this.changeSound(this.mainSound, 0.2);
         this.popup.once('resetPage', () => this.restartScene());
         ui.deactivatePlayButton();
+        await this.wait(500);
         await this.popup.show(popupName);
         await this.popup.hide();
+        this.changeSound(this.mainSound,0.4);
         ui.activatePlayButton();
         ui.activateBetButtons();
     }
@@ -233,5 +276,18 @@ export class Scene extends Container {
             }
         });
 
+    }
+
+    changeSound(sound, volume) {
+        var initialVolume = sound.volume();
+        var targetVolume = volume;
+        var duration = 1000;
+        const vol = { volume: initialVolume };
+        var tween = new TWEEN.Tween(vol)
+            .to({ volume: targetVolume }, duration)
+            .onUpdate(() => {
+                sound.volume(vol.volume);
+            })
+            .start();
     }
 }

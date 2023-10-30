@@ -5,6 +5,7 @@ import {Man} from "../Man.js";
 import {Zombie} from "../Zombie.js";
 import ui from "../page/LogicUI.mjs";
 import {Profit} from "../Profit.js";
+import {GamePopup} from "../popups/GamePopup.js";
 
 export class Scene extends Container {
     constructor() {
@@ -23,20 +24,6 @@ export class Scene extends Container {
         this._addTreeConts();
         this.man = this.addChild(new Man());
         this.man.y = 120;
-        // this.scale.set(0.5);
-
-        // let text = new Text('ZombiEvade', {
-        //     fontFamily: 'Arial',
-        //     fontSize: 32,
-        //     fill: 0xff1010,
-        //     align: 'center',
-        //     fontWeight: "bold",
-        //     stroke: "#0e0af5",
-        //     strokeThickness: 4
-        // });
-        // text.anchor.set(0.5);
-        // text.y = -290;
-        // this.addChild(text);
 
         this.logo = this.addChild(Sprite.from('logo'));
         this.logo.anchor.set(0.5);
@@ -46,6 +33,7 @@ export class Scene extends Container {
 
         window["logo"] = this.logo;
         this.addListeners();
+        this.addPopup();
     }
 
     addListeners() {
@@ -76,10 +64,6 @@ export class Scene extends Container {
         this._addBack(this.treeCont2);
         this._addTrees(this.treeCont1);
         this._addTrees(this.treeCont2);
-
-        // window["treeCont1"] = this.treeCont1;
-        // window["treeCont2"] = this.treeCont2;
-        // window["scene"] = this;
     }
 
     _addTrees(container) {
@@ -101,9 +85,7 @@ export class Scene extends Container {
 
         this.zombie = container.addChildAt(new Zombie(), container.getChildIndex(container.trees[choosedTree]));
         this.zombie.x = config.trees[choosedTree].x;
-        this.zombie.y = 100;
-
-        // window["zombie"] = this.zombie;
+        this.zombie.y = 90;
     }
 
     addProfit(container) {
@@ -131,8 +113,8 @@ export class Scene extends Container {
     playRound() {
         this.isPlaying = true;
         if (ui.balance < ui.bet) {
-            console.log('You do not have enough funds to place this bet!');
-            this.isPlaying = false
+            this.isPlaying = false;
+            this.showPopup('popupNoMoney');
             return;
         }
         this.man.walk();
@@ -154,9 +136,10 @@ export class Scene extends Container {
             await this.zombie.walk();
             this.man.standZombie();
         }
-        this.addPopup(isWin);
         ui.startStopButton.textContent = 'Start Round';
         ui.deactivatePlayButton();
+        const popupName = isWin ? 'popupWin' : 'popupLose';
+        await this.showPopup(popupName);
         this.animationRunning = !this.animationRunning;
     }
 
@@ -178,9 +161,6 @@ export class Scene extends Container {
         this.treeCont1.x = 0;
         this.treeCont2.x = config.backWidth;
         this.profit.length = 0;
-
-        ui.activatePlayButton();
-        ui.activateBetButtons();
     }
 
     checkZombie(containers) {
@@ -211,13 +191,18 @@ export class Scene extends Container {
         }
     }
 
-    addPopup() { //todo
-        const tween = new TWEEN.Tween({time: 1})
-            .to({time: 0}, 1000)
-            .onComplete(() => {
-                this.restartScene();
-            })
-        tween.start();
+    addPopup() {
+        this.popup = this.addChild(new GamePopup());
+        window["popup"] = this.popup;
+    }
+
+    async showPopup(popupName) {
+        this.popup.once('resetPage', () => this.restartScene());
+        ui.deactivatePlayButton();
+        await this.popup.show(popupName);
+        await this.popup.hide();
+        ui.activatePlayButton();
+        ui.activateBetButtons();
     }
 
     checkEndRound() {

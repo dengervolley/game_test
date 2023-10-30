@@ -113,5 +113,3 @@ export class UI {
 
 const ui = window.ui = new UI();
 export default ui;
-
-

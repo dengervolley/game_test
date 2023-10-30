@@ -1,9 +1,12 @@
 export const config = {
-    balance: 1000,
+    gameWidth: 1280,
+    gameHeight: 640,
+    balance: 100,
     speed: 4,
-    maxContNumber: 2,
+    maxContNumber: 10,
     backWidth: 1280,
-    backScale: 0.75,
+    backHeight: 640,
+    waitTime: 1000,
     trees: [
         {
             x: -475,

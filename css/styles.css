@@ -21,10 +21,9 @@ body {
 }
 
 .UIClass {
-    position: relative;
-    top: 5em;
+    position: absolute;
+    top: 0;
     display: flex;
-    /*background-color: rgba(100, 100, 100, 0.3);*/
     width: 960px;
     height: 3em;
     justify-content: center;
@@ -43,38 +42,11 @@ body {
     /*cursor: pointer; !* Добавляем курсор-руку для закрытия *!*/
 }
 
-/*#startScreen {*/
-/*    background-color: rgba(0, 0, 0, 0.7);*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    justify-content: flex-end;*/
-/*    align-items: center;*/
-/*}*/
-
-/*.blink {*/
-/*    animation: blink 1s infinite;*/
-/*    font-size: 3em;*/
-/*    color: #fff;*/
-/*}*/
-
-/*@keyframes blink {*/
-/*    0%, 50% {*/
-/*        color: transparent;*/
-/*    }*/
-/*}*/
-
 #gameWindow {
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
     align-items: center; /* Центрируем элементы по горизонтали */
 }
-
-/*#bonusButton {*/
-/*    width: 150px;*/
-/*    padding: 20px;*/
-/*    margin: 10px 0;*/
-/*}*/
 
 #gameInfo {
     display: flex;
@@ -105,13 +77,8 @@ body {
     right: 110px;
 }
 
-.info-button:hover {
-    /*background-color: #3498db;*/
-    color: white;
-}
-
 .info-button:focus {
-    background-color: #2073b0;
+    background-color: darkorange;
     color: white;
 }
 
@@ -127,7 +94,7 @@ body {
 }
 
 .deactivateBet {
-   opacity: 0.4;
+    opacity: 0.4;
 }
 
 #startStopButton:active {
@@ -137,22 +104,23 @@ body {
 #betControls button {
     width: 30px;
     height: 30px;
-    background-color: #56ccf2;
+    background-color: orange;
     color: #fff;
     border: none;
     /*cursor: pointer;*/
     transition-duration: .4s;
+    border-radius: 5px;
 }
 
 #betControls button:hover {
-    background-color: #2f80ed;
+    background-color: chocolate;
     color: #fff;
     border: none;
     /*cursor: pointer;*/
 }
 
 #betControls button:focus {
-    background-color: #2f80ed;
+    background-color: chocolate;
     color: #fff;
     border: none;
     /*cursor: pointer;*/
@@ -186,10 +154,16 @@ body {
     height: 40px;
     margin: 5px;
     position: relative;
+    background-color: orange;
+    border-radius: 10px;
+}
+
+.betOption:hover {
+    background-color: chocolate;
 }
 
 .betOption.active {
-    background-color: #3498db;
+    background-color: darkorange;
     color: #fff;
 }
 

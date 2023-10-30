@@ -1,0 +1,201 @@
+body {
+    margin: 0;
+    padding: 0;
+    /*background-image: url('game_background.jpg');*/
+    background-color: #333333;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+    padding: 15px;
+    width: 100%;
+    height: 5em;
+}
+
+.UIClass {
+    position: relative;
+    top: 5em;
+    display: flex;
+    /*background-color: rgba(100, 100, 100, 0.3);*/
+    width: 960px;
+    height: 3em;
+    justify-content: center;
+}
+
+.hideUI {
+    display: none;
+}
+
+.click-closer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*cursor: pointer; !* Добавляем курсор-руку для закрытия *!*/
+}
+
+/*#startScreen {*/
+/*    background-color: rgba(0, 0, 0, 0.7);*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: flex-end;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.blink {*/
+/*    animation: blink 1s infinite;*/
+/*    font-size: 3em;*/
+/*    color: #fff;*/
+/*}*/
+
+/*@keyframes blink {*/
+/*    0%, 50% {*/
+/*        color: transparent;*/
+/*    }*/
+/*}*/
+
+#gameWindow {
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center; /* Центрируем элементы по горизонтали */
+}
+
+/*#bonusButton {*/
+/*    width: 150px;*/
+/*    padding: 20px;*/
+/*    margin: 10px 0;*/
+/*}*/
+
+#gameInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-button {
+    position: absolute;
+    right: 145px;
+    width: 202px;
+    opacity: 0.8;
+    /* Добавляем эффект нажатия на кнопки */
+    transition-duration: 0.4s;
+}
+
+.roundWin {
+    position: absolute;
+    left: 200px;
+    font-size: 24px;
+    color: darkorange;
+}
+
+.bets {
+    display: flex;
+    justify-content: space-between;
+    width: 270px;
+    right: 110px;
+}
+
+.info-button:hover {
+    /*background-color: #3498db;*/
+    color: white;
+}
+
+.info-button:focus {
+    background-color: #2073b0;
+    color: white;
+}
+
+#startStopButton {
+    border: 5px solid darkorange;
+    border-radius: 10px;
+    background-color: orange;
+}
+
+.deactivateButton {
+    border-color: chocolate;
+    background-color: darkgoldenrod;
+}
+
+.deactivateBet {
+   opacity: 0.4;
+}
+
+#startStopButton:active {
+    background-color: darkgoldenrod;
+}
+
+#betControls button {
+    width: 30px;
+    height: 30px;
+    background-color: #56ccf2;
+    color: #fff;
+    border: none;
+    /*cursor: pointer;*/
+    transition-duration: .4s;
+}
+
+#betControls button:hover {
+    background-color: #2f80ed;
+    color: #fff;
+    border: none;
+    /*cursor: pointer;*/
+}
+
+#betControls button:focus {
+    background-color: #2f80ed;
+    color: #fff;
+    border: none;
+    /*cursor: pointer;*/
+}
+
+.bet {
+    font-size: 24px;
+    color: darkorange;
+    position: absolute; /* Позиционируем блок ставок внизу справа */
+    bottom: 10px;
+    right: 10px;
+    padding: 0 10px;
+}
+
+#betAmount {
+    font-size: 24px;
+    color: darkorange;
+}
+
+#balance {
+    font-size: 24px;
+    color: darkorange;
+    position: absolute; /* Позиционируем блок баланса внизу слева */
+    bottom: 10px;
+    left: 10px;
+}
+
+/* Добавляем стили для плитки выбора ставок */
+.betOption {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    position: relative;
+}
+
+.betOption.active {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.betRow {
+    display: flex;
+    justify-content: flex-end; /* Прижимаем к правому краю */
+}
+
+

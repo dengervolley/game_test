@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ZombiEvade</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+</head>
+<body>
+<div class="wrapper">
+    <div id="gameWindow" class="click-closer">
+        <canvas id="game-container"></canvas>
+    </div>
+    <div id="gameUI" class="UIClass">
+        <button id="startStopButton"><span class="text">Start Round</span></button>
+        <div id="gameInfo">
+            <div id="balance" class="info-button">Balance: <span id="balanceValue">0</span></div>
+            <div class="roundWin">
+                <span class="roundWinLabel">Round win: </span><span id="roundWinNum" class="roundWinNumber">0</span>
+            </div>
+            <div id="betControls" class="info-button bets">
+                <button id="decreaseBet">-</button>
+                <button id="increaseBet">+</button>
+            </div>
+            <div id="betOptions" class="info-button">
+                <div class="betRow">
+                    <button class="betOption">10</button>
+                    <button class="betOption">20</button>
+                    <button class="betOption">50</button>
+                    <button class="betOption">100</button>
+                </div>
+            </div>
+            <div class="bet">
+                <span class="betLabel">Bet: </span><span id="betAmount">10</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/20.0.0/tween.umd.js"></script>
+<script type="module" src="./js/index.mjs"></script>
+<script type="module" src="js/page/LogicUI.mjs"></script>
+</body>
+</html>
